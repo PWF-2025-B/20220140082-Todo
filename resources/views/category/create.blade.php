@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Todo') }}
+            {{ __('Category') }}
         </h2>
     </x-slot>
 
@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form method="POST" action="{{ route('todo.store') }}">
+                    <form method="POST" action="{{ route('category.store') }}">
                         @csrf
                         @method('POST')
                         <div class="mb-6">
@@ -18,19 +18,9 @@
                                 required autofocus autocomplete="title" />
                             <x-input-error class="mt-2" :messages="$errors->get('title')" />
                         </div>
-
-                        <div class="mb-6">
-                            <x-select name="category_id" id="category" class="block w-full mt-1 bg-white border border-gray-300 text-gray-900">
-                              <option value="" selected>Empty</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->title }}</option>
-                            @endforeach
-                            </x-select>
-                        </div>
-
                         <div class="flex items-center gap-4">
                             <x-primary-button>{{ __('Save') }}</x-primary-button>
-                            <a href="{{ route('todo.index') }}"
+                            <a href="{{ route('category.index') }}"
                                 class="inline-flex items-center px-4 py-2 text-xs fonst-semibold tracking-widest
                                 text-gray-700 uppercase transition duration-150 ease-in-out bg-white border
                                 border-gray-300 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-500
