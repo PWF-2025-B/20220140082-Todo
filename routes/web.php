@@ -14,7 +14,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'verified')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/todo', [TodoController::class, 'index'])->name('todo.index');
     Route::get('/todo/create', [TodoController::class, 'create'])->name('todo.create');
     Route::get('/todo/{todo}/edit', [TodoController::class, 'edit'])->name('todo.edit');
-    Route::patch('/todo/{todo}', [TodoController::class, 'update'])->name('todo.update');
+    // Route::patch('/todo/{todo}', [TodoController::class, 'update'])->name('todo.update');
     Route::patch('/todo/{todo}/complete', [TodoController::class, 'complete'])->name('todo.complete');
     Route::patch('/todo/{todo}/uncomplete', [TodoController::class, 'uncomplete'])->name('todo.uncomplete');
     Route::delete('/todo/{todo}', [TodoController::class, 'destroy'])->name('todo.destroy');
@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
     Route::get('/category/{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
-    Route::patch('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
+    // Route::patch('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
